@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 
+// importi do arquivo da 'props'
 import { PropsFiltroTarefas } from '.'
+
+// type criado herda o type PropsFiltroTarefas do index.tsx porém sem os atributos
+// 'contador' e 'legenda'. Pois estes atributos não serão usados neste arquivo
+type PropsSemLegendaEContador = Omit<PropsFiltroTarefas, 'contador' | 'legenda'>
 
 /* Será  passado uma PROPS para mudar as propriedades 'border' e 'color'.
   PROPS é uma propriedade passada de um componente Pai para um componente Filho.
   PROPS é um atributo de um componete. Atribuido na prática em uma tag */
-export const Card = styled.div<PropsFiltroTarefas>`
+export const Card = styled.div<PropsSemLegendaEContador>`
   padding: 8px;
   border: 1px solid ${(props) => (props.ativo ? '#1e90ff' : '#a1a1a1')};
   background-color: ${(props) => (props.ativo ? '#fff' : '#fcfcfc')};
