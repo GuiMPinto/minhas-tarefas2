@@ -4,19 +4,45 @@ import { Container } from './styles'
 //import { useSelector } from 'react-redux'
 //import { RootReducer } from '../../store'
 
+const tarefas = [
+  {
+    titulo: 'Estudar TypeScript',
+    descricao: 'Ver aula 3 da Ebac',
+    prioridade: 'importante',
+    status: 'pendente'
+  },
+  {
+    titulo: 'Estudar React',
+    descricao: 'Ver aula 2 da Ebac',
+    prioridade: 'importante',
+    status: 'concluída'
+  },
+  {
+    titulo: 'Estudar Redux',
+    descricao: 'Ver aula 4 da Ebac',
+    prioridade: 'importante',
+    status: 'pendente'
+  }
+]
+
 const ListaTarefas = () => (
   <Container>
     <p>2 Tarefas marcadas como</p>
     <ul>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
+      {
+        tarefas.map(
+          (t) => (
+            <li key={t.titulo}>
+              <Tarefa
+                descricaoComT={t.descricao}
+                tituloComT={t.titulo}
+                statusComT={t.status}
+                prioridadeComT={t.prioridade}
+              />
+            </li>
+          ) /* => (*/
+        ) /* .map ( */
+      }
     </ul>
   </Container>
 )
