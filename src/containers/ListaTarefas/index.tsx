@@ -1,6 +1,6 @@
 import Tarefa from '../../components/Tarefa'
 import { Container } from './styles'
-// -- Versão 2 -- import * as enums from '../../utils/enum/Tarefas'
+import * as enums from '../../utils/enums/enumTarefas'
 //import { useSelector } from 'react-redux'
 //import { RootReducer } from '../../store'
 
@@ -8,20 +8,20 @@ const tarefas = [
   {
     titulo: 'Estudar TypeScript',
     descricao: 'Ver aula 3 da Ebac',
-    prioridade: 'importante',
-    status: 'pendente'
+    prioridade: enums.Prioridade.URGENTE,
+    status: enums.Status.PENDENTE
   },
   {
     titulo: 'Estudar React',
     descricao: 'Ver aula 2 da Ebac',
-    prioridade: 'importante',
-    status: 'concluida'
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.CONCLUIDA
   },
   {
     titulo: 'Estudar Redux',
     descricao: 'Ver aula 4 da Ebac',
-    prioridade: 'importante',
-    status: 'pendente'
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.PENDENTE
   }
 ]
 
