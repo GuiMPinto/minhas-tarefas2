@@ -19,20 +19,22 @@ const Tarefa = ({
   return (
     <S.Card>
       <S.Titulo>{tituloComT}</S.Titulo>
-      <S.Tag>{prioridadeComT}</S.Tag>
-      <S.Tag>{statusComT}</S.Tag>
+      <S.Tag prioridadeTagProps={prioridadeComT}>{prioridadeComT}</S.Tag>
+      <S.Tag statusTagProps={statusComT}>{statusComT}</S.Tag>
       {/* Equivalente ao <textarea ></textarea> */}
       <S.Descricao value={descricaoComT} />
       <S.BarraAcao>
         {estaEditando ? (
           <>
-            <S.Botao>Salvar</S.Botao>
-            <S.Botao onClick={() => setEstaEditando(false)}>Cancelar</S.Botao>
+            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
+            <S.BotaoCancelarRemover onClick={() => setEstaEditando(false)}>
+              Cancelar
+            </S.BotaoCancelarRemover>
           </>
         ) : (
           <>
             <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
-            <S.Botao> Remover</S.Botao>
+            <S.BotaoCancelarRemover> Remover</S.BotaoCancelarRemover>
           </>
         )}
       </S.BarraAcao>

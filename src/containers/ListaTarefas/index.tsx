@@ -15,7 +15,7 @@ const tarefas = [
     titulo: 'Estudar React',
     descricao: 'Ver aula 2 da Ebac',
     prioridade: 'importante',
-    status: 'concluída'
+    status: 'concluida'
   },
   {
     titulo: 'Estudar Redux',
