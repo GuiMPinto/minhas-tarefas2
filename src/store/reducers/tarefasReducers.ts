@@ -56,10 +56,19 @@ const tarefasSlice = createSlice({
       state.itens = state.itens.filter(
         (tarefa) => tarefa.idModels !== action.payload
       )
-    }
-  }
+    },
+    editar: (state, action: PayloadAction<tarefaModels>) => {
+      const indexDaTarefa = state.itens.findIndex(
+        (t) => t.idModels === action.payload.idModels
+      )
+
+      if (indexDaTarefa >= 0) {
+        state.itens[indexDaTarefa] = action.payload
+      }
+    } // remover: ... => {
+  } // reducer:{
 })
 
 export default tarefasSlice.reducer
 
-export const { remover } = tarefasSlice.actions
+export const { remover, editar } = tarefasSlice.actions

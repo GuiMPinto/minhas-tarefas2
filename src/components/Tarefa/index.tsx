@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux' // HOOK usado para de ACTION
 
 import * as S from './styles'
 //import * as enums from '../../utils/enums/enumTarefas'
-import { remover } from '../../store/reducers/tarefasReducers' /* Importando a função que remover uma ACTION */
+import {
+  remover,
+  editar
+} from '../../store/reducers/tarefasReducers' /* Importando a função que remover uma ACTION */
 import tarefaModels from '../../models/tarefaModels'
 
 type PropsTarefas = tarefaModels
@@ -11,12 +14,26 @@ const Tarefa = ({
   tituloModels,
   prioridadeModels,
   statusModels,
-  descricaoModels,
+  descricaoModels: descricaoOriginal,
   idModels
 }: PropsTarefas) => {
   const dispatch = useDispatch() // HOOK que altera a ACTION
+
   /* O uso de USESTATE é feito com 2 parâmetros o 'valor' e a 'função que configura este valor' */
   const [estaEditando, setEstaEditando] = useState(false)
+  const [descricao, setDescricao] = useState(' ')
+
+  /*o USE EFFECT dispara uma função apenas na condição do If */
+  useEffect(() => {
+    if (descricaoOriginal.length > 0) {
+      setDescricao(descricaoOriginal)
+    }
+  }, [descricaoOriginal])
+
+  function cancelerEdicao() {
+    setEstaEditando(false)
+    setDescricao(descricaoOriginal)
+  }
 
   return (
     <S.Card>
@@ -28,12 +45,31 @@ const Tarefa = ({
         {statusModels}
       </S.Tag>
       {/* Equivalente ao <textarea ></textarea> */}
-      <S.Descricao value={descricaoModels} />
+      <S.Descricao
+        disabled={!estaEditando}
+        value={descricao}
+        onChange={(evento) => setDescricao(evento.target.value)}
+      />
       <S.BarraAcao>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarRemover onClick={() => setEstaEditando(false)}>
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
+                  editar({
+                    tituloModels,
+                    prioridadeModels,
+                    statusModels,
+                    descricaoModels: descricaoOriginal,
+                    idModels
+                  })
+                )
+                setEstaEditando(false)
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoCancelarRemover onClick={cancelerEdicao}>
               Cancelar
             </S.BotaoCancelarRemover>
           </>
@@ -41,7 +77,6 @@ const Tarefa = ({
           <>
             <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
             <S.BotaoCancelarRemover onClick={() => dispatch(remover(idModels))}>
-              {' '}
               Remover
             </S.BotaoCancelarRemover>
           </>
