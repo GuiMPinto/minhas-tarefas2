@@ -6,20 +6,21 @@ import { Container } from './styles'
 
 const ListaTarefas = () => {
   //const tarefas = useSelector((state: RootReducer) => state.tarefasReducers)
-  const { tarefasReducers } = useSelector((state: RootReducer) => state)
+  const { itens } = useSelector((state: RootReducer) => state.tarefasReducers)
   return (
     <Container>
       <p>2 Tarefas marcadas como</p>
       <ul>
         {
-          tarefasReducers.map(
+          itens.map(
             (t) => (
               <li key={t.tituloModels}>
                 <Tarefa
-                  descricaoComT={t.descricaoModels}
-                  tituloComT={t.descricaoModels}
-                  statusComT={t.statusModels}
-                  prioridadeComT={t.prioridadeModels}
+                  descricaoModels={t.descricaoModels}
+                  tituloModels={t.tituloModels}
+                  statusModels={t.statusModels}
+                  prioridadeModels={t.prioridadeModels}
+                  idModels={t.idModels}
                 />
               </li>
             ) /* => (*/

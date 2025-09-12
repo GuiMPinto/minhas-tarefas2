@@ -1,34 +1,34 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux' // HOOK usado para de ACTION
+
 import * as S from './styles'
+//import * as enums from '../../utils/enums/enumTarefas'
+import { remover } from '../../store/reducers/tarefasReducers' /* Importando a função que remover uma ACTION */
+import tarefaModels from '../../models/tarefaModels'
 
-import * as enums from '../../utils/enums/enumTarefas'
-
-type PropsTarefas = {
-  tituloComT: string
-  prioridadeComT: enums.Prioridade
-  statusComT: enums.Status
-  descricaoComT: string
-}
+type PropsTarefas = tarefaModels
 const Tarefa = ({
-  tituloComT,
-  prioridadeComT,
-  statusComT,
-  descricaoComT
+  tituloModels,
+  prioridadeModels,
+  statusModels,
+  descricaoModels,
+  idModels
 }: PropsTarefas) => {
+  const dispatch = useDispatch() // HOOK que altera a ACTION
   /* O uso de USESTATE é feito com 2 parâmetros o 'valor' e a 'função que configura este valor' */
   const [estaEditando, setEstaEditando] = useState(false)
 
   return (
     <S.Card>
-      <S.Titulo>{tituloComT}</S.Titulo>
-      <S.Tag parametro="prioridade" prioridadeTagProps={prioridadeComT}>
-        {prioridadeComT}
+      <S.Titulo>{tituloModels}</S.Titulo>
+      <S.Tag parametro="prioridade" prioridadeTagProps={prioridadeModels}>
+        {prioridadeModels}
       </S.Tag>
-      <S.Tag parametro="status" statusTagProps={statusComT}>
-        {statusComT}
+      <S.Tag parametro="status" statusTagProps={statusModels}>
+        {statusModels}
       </S.Tag>
       {/* Equivalente ao <textarea ></textarea> */}
-      <S.Descricao value={descricaoComT} />
+      <S.Descricao value={descricaoModels} />
       <S.BarraAcao>
         {estaEditando ? (
           <>
@@ -40,7 +40,10 @@ const Tarefa = ({
         ) : (
           <>
             <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
-            <S.BotaoCancelarRemover> Remover</S.BotaoCancelarRemover>
+            <S.BotaoCancelarRemover onClick={() => dispatch(remover(idModels))}>
+              {' '}
+              Remover
+            </S.BotaoCancelarRemover>
           </>
         )}
       </S.BarraAcao>
