@@ -2,10 +2,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import reducersTarefas from '../store/reducers/tarefasReducers'
+import reducersFiltros from './reducers/filtroReducers'
 
 /* Recebe um objeto */
 const store = configureStore({
-  reducer: { tarefasReducers: reducersTarefas } // Um STATE
+  reducer: {
+    tarefasReducers: reducersTarefas, // Um STATE
+    filtroReducers: reducersFiltros // Um STATE
+  }
 })
 
 /* Usaremos qundo for usar o 'useSelector'. Este é usado para acessar um dado no Reducer.

@@ -18,24 +18,24 @@ const initialState: TarefaState = {
   itens: [
     {
       idModels: 1,
-      descricaoModels: 'Estudar Java Script',
+      descricaoModels: 'Aula 2',
       prioridadeModels: enums.Prioridade.NORMAL,
       statusModels: enums.Status.CONCLUIDA,
-      tituloModels: 'Estudar Aula 3'
+      tituloModels: 'Java Script'
     },
     {
       idModels: 2,
-      descricaoModels: 'Estudar Bootstrap',
+      descricaoModels: 'Aula 1',
       prioridadeModels: enums.Prioridade.IMPORTANTE,
       statusModels: enums.Status.CONCLUIDA,
-      tituloModels: 'Estudar Aula 1'
+      tituloModels: 'Bootstrap'
     },
     {
       idModels: 3,
-      descricaoModels: 'Estudar Redux',
+      descricaoModels: 'Aula 3',
       prioridadeModels: enums.Prioridade.URGENTE,
       statusModels: enums.Status.PENDENTE,
-      tituloModels: 'Estudar Aula 4'
+      tituloModels: 'Redux'
     }
   ]
 }
